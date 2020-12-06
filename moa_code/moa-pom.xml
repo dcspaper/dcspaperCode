@@ -1,0 +1,1203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="moa-pom" default="all">
+  
+  
+  <property file="moa-pom.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.swc"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.egg"/>
+    <include name="*.ane"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+    <include name="*.klib"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/ext/cldrdata.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/jaccess.jar"/>
+      <include name="jre/lib/ext/jfxrt.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/nashorn.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jfr.jar"/>
+      <include name="jre/lib/jfxswt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+      <include name="lib/ant-javafx.jar"/>
+      <include name="lib/dt.jar"/>
+      <include name="lib/javafx-mx.jar"/>
+      <include name="lib/jconsole.jar"/>
+      <include name="lib/packager.jar"/>
+      <include name="lib/sa-jdi.jar"/>
+      <include name="lib/tools.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.maven:_classworlds:classworlds:1.1-alpha-2.classpath">
+    <pathelement location="${path.variable.maven_repository}/classworlds/classworlds/1.1-alpha-2/classworlds-1.1-alpha-2.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.fifesoft:rsyntaxtextarea:2.6.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/fifesoft/rsyntaxtextarea/2.6.1/rsyntaxtextarea-2.6.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.fommil.netlib:core:1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/fommil/netlib/core/1.1/core-1.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.fommil.netlib:native_ref-java:1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/fommil/netlib/native_ref-java/1.1/native_ref-java-1.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.fommil.netlib:native_system-java:1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/fommil/netlib/native_system-java/1.1/native_system-java-1.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-armhf:natives:1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/fommil/netlib/netlib-native_ref-linux-armhf/1.1/netlib-native_ref-linux-armhf-1.1-natives.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-i686:natives:1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/fommil/netlib/netlib-native_ref-linux-i686/1.1/netlib-native_ref-linux-i686-1.1-natives.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-x86_64:natives:1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/fommil/netlib/netlib-native_ref-linux-x86_64/1.1/netlib-native_ref-linux-x86_64-1.1-natives.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.fommil.netlib:netlib-native_ref-osx-x86_64:natives:1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/fommil/netlib/netlib-native_ref-osx-x86_64/1.1/netlib-native_ref-osx-x86_64-1.1-natives.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.fommil.netlib:netlib-native_ref-win-i686:natives:1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/fommil/netlib/netlib-native_ref-win-i686/1.1/netlib-native_ref-win-i686-1.1-natives.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.fommil.netlib:netlib-native_ref-win-x86_64:natives:1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/fommil/netlib/netlib-native_ref-win-x86_64/1.1/netlib-native_ref-win-x86_64-1.1-natives.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-armhf:natives:1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/fommil/netlib/netlib-native_system-linux-armhf/1.1/netlib-native_system-linux-armhf-1.1-natives.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-i686:natives:1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/fommil/netlib/netlib-native_system-linux-i686/1.1/netlib-native_system-linux-i686-1.1-natives.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-x86_64:natives:1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/fommil/netlib/netlib-native_system-linux-x86_64/1.1/netlib-native_system-linux-x86_64-1.1-natives.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.fommil.netlib:netlib-native_system-osx-x86_64:natives:1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/fommil/netlib/netlib-native_system-osx-x86_64/1.1/netlib-native_system-osx-x86_64-1.1-natives.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.fommil.netlib:netlib-native_system-win-i686:natives:1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/fommil/netlib/netlib-native_system-win-i686/1.1/netlib-native_system-win-i686-1.1-natives.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.fommil.netlib:netlib-native_system-win-x86_64:natives:1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/fommil/netlib/netlib-native_system-win-x86_64/1.1/netlib-native_system-win-x86_64-1.1-natives.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.fommil:jniloader:1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/fommil/jniloader/1.1/jniloader-1.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.fracpete:jclipboardhelper:0.1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/fracpete/jclipboardhelper/0.1.1/jclipboardhelper-0.1.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.fracpete:jfilechooser-bookmarks:0.1.6.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/fracpete/jfilechooser-bookmarks/0.1.6/jfilechooser-bookmarks-0.1.6.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.fracpete:jshell-scripting:0.0.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/fracpete/jshell-scripting/0.0.1/jshell-scripting-0.0.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.fracpete:multisearch-weka-package:2017.10.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/fracpete/multisearch-weka-package/2017.10.1/multisearch-weka-package-2017.10.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.fracpete:processoutput4j:0.0.7.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/fracpete/processoutput4j/0.0.7/processoutput4j-0.0.7.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.fracpete:sizeofag:1.0.4.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/fracpete/sizeofag/1.0.4/sizeofag-1.0.4.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.waikato:fcms-widgets:0.0.14.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/waikato/fcms-widgets/0.0.14/fcms-widgets-0.0.14.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.waikato:jclasslocator:0.0.12.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/waikato/jclasslocator/0.0.12/jclasslocator-0.0.12.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.googlecode.efficient-java-matrix-library:ejml:0.22.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/googlecode/efficient-java-matrix-library/ejml/0.22/ejml-0.22.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.googlecode.java-diff-utils:diffutils:1.2.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/googlecode/java-diff-utils/diffutils/1.2.1/diffutils-1.2.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.googlecode.matrix-toolkits-java:mtj:1.0.4.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/googlecode/matrix-toolkits-java/mtj/1.0.4/mtj-1.0.4.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.googlecode.netlib-java:netlib-java:1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/googlecode/netlib-java/netlib-java/1.1/netlib-java-1.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.jidesoft:jide-oss:3.6.18.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/jidesoft/jide-oss/3.6.18/jide-oss-3.6.18.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.opencsv:opencsv:4.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/opencsv/opencsv/4.0/opencsv-4.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-beanutils:commons-beanutils:1.9.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-beanutils/commons-beanutils/1.9.3/commons-beanutils-1.9.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-cli:commons-cli:1.4.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-cli/commons-cli/1.4/commons-cli-1.4.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-collections:commons-collections:3.2.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-io:commons-io:2.4.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-io/commons-io/2.4/commons-io-2.4.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-logging:commons-logging:1.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-logging/commons-logging/1.2/commons-logging-1.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_gov.nist.math:jama:1.0.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/gov/nist/math/jama/1.0.3/jama-1.0.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_junit:junit:4.8.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/junit/junit/4.8.2/junit-4.8.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_net.sf.meka:meka:1.9.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/net/sf/meka/meka/1.9.2/meka-1.9.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_net.sf.trove4j:trove4j:3.0.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/net/sf/trove4j/trove4j/3.0.3/trove4j-3.0.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_net.sourceforge.f2j:arpack_combined_all:0.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/net/sourceforge/f2j/arpack_combined_all/0.1/arpack_combined_all-0.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_nz.ac.waikato.cms.moa:moa:2019.05.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/nz/ac/waikato/cms/moa/moa/2019.05.0/moa-2019.05.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_nz.ac.waikato.cms.weka.thirdparty:bounce:0.18.classpath">
+    <pathelement location="${path.variable.maven_repository}/nz/ac/waikato/cms/weka/thirdparty/bounce/0.18/bounce-0.18.jar"/>
+  </path>
+  
+  <path id="library.maven:_nz.ac.waikato.cms.weka.thirdparty:java-cup-11b-runtime:2015.03.26.classpath">
+    <pathelement location="${path.variable.maven_repository}/nz/ac/waikato/cms/weka/thirdparty/java-cup-11b-runtime/2015.03.26/java-cup-11b-runtime-2015.03.26.jar"/>
+  </path>
+  
+  <path id="library.maven:_nz.ac.waikato.cms.weka.thirdparty:java-cup-11b:2015.03.26.classpath">
+    <pathelement location="${path.variable.maven_repository}/nz/ac/waikato/cms/weka/thirdparty/java-cup-11b/2015.03.26/java-cup-11b-2015.03.26.jar"/>
+  </path>
+  
+  <path id="library.maven:_nz.ac.waikato.cms.weka:weka-dev:3.9.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/nz/ac/waikato/cms/weka/weka-dev/3.9.2/weka-dev-3.9.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.commons:commons-lang3:3.7.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/commons/commons-lang3/3.7/commons-lang3-3.7.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.commons:commons-math3:3.6.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.commons:commons-text:1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/commons/commons-text/1.1/commons-text-1.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.maven.doxia:doxia-sink-api:1.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/maven/doxia/doxia-sink-api/1.0/doxia-sink-api-1.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.maven.reporting:maven-reporting-api:2.0.9.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/maven/reporting/maven-reporting-api/2.0.9/maven-reporting-api-2.0.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.maven.wagon:wagon-provider-api:1.0-beta-2.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/maven/wagon/wagon-provider-api/1.0-beta-2/wagon-provider-api-1.0-beta-2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.maven:maven-artifact-manager:2.0.9.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/maven/maven-artifact-manager/2.0.9/maven-artifact-manager-2.0.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.maven:maven-artifact:2.0.9.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/maven/maven-artifact/2.0.9/maven-artifact-2.0.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.maven:maven-model:2.0.9.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/maven/maven-model/2.0.9/maven-model-2.0.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.maven:maven-plugin-api:2.0.9.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/maven/maven-plugin-api/2.0.9/maven-plugin-api-2.0.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.maven:maven-plugin-registry:2.0.9.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/maven/maven-plugin-registry/2.0.9/maven-plugin-registry-2.0.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.maven:maven-profile:2.0.9.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/maven/maven-profile/2.0.9/maven-profile-2.0.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.maven:maven-project:2.0.9.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/maven/maven-project/2.0.9/maven-project-2.0.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.maven:maven-repository-metadata:2.0.9.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/maven/maven-repository-metadata/2.0.9/maven-repository-metadata-2.0.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.maven:maven-settings:2.0.9.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/maven/maven-settings/2.0.9/maven-settings-2.0.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.codehaus.plexus:plexus-container-default:1.0-alpha-9-stable-1.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/codehaus/plexus/plexus-container-default/1.0-alpha-9-stable-1/plexus-container-default-1.0-alpha-9-stable-1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.codehaus.plexus:plexus-utils:3.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.jfree:jcommon:1.0.23.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/jfree/jcommon/1.0.23/jcommon-1.0.23.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.jfree:jfreechart:1.0.19.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/jfree/jfreechart/1.0.19/jfreechart-1.0.19.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.kramerlab:autoencoder:0.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/kramerlab/autoencoder/0.1/autoencoder-0.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.kramerlab:bmad:2.4.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/kramerlab/bmad/2.4/bmad-2.4.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.markdownj:markdownj-core:0.4.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/markdownj/markdownj-core/0.4/markdownj-core-0.4.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.scala-lang:scala-library:2.10.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/scala-lang/scala-library/2.10.2/scala-library-2.10.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.scala-lang:scala-swing:2.10.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/scala-lang/scala-swing/2.10.2/scala-swing-2.10.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.scalatest:scalatest-maven-plugin:1.0-m2.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/scalatest/scalatest-maven-plugin/1.0-M2/scalatest-maven-plugin-1.0-M2.jar"/>
+  </path>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <fileset dir="${javac2.home}">
+      <include name="javac2.jar"/>
+      <include name="jdom.jar"/>
+      <include name="asm-all*.jar"/>
+      <include name="forms-*.jar"/>
+    </fileset>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module moa -->
+  
+  <dirname property="module.moa.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.moa" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.moa" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.moa" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.moa" value="-encoding UTF-8 -source 8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="moa.output.dir" value="${module.moa.basedir}/moa/target/classes"/>
+  <property name="moa.testoutput.dir" value="${module.moa.basedir}/moa/target/test-classes"/>
+  
+  <path id="moa.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="moa.module.production.classpath">
+    <path refid="${module.jdk.classpath.moa}"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka:weka-dev:3.9.2.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:java-cup-11b:2015.03.26.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:java-cup-11b-runtime:2015.03.26.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:bounce:0.18.classpath"/>
+    <path refid="library.maven:_com.googlecode.matrix-toolkits-java:mtj:1.0.4.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-osx-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:native_ref-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil:jniloader:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-win-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-win-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-armhf:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-osx-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:native_system-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-armhf:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-win-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-win-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_net.sourceforge.f2j:arpack_combined_all:0.1.classpath"/>
+    <path refid="library.maven:_com.googlecode.netlib-java:netlib-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:core:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:sizeofag:1.0.4.classpath"/>
+    <path refid="library.maven:_com.github.waikato:jclasslocator:0.0.12.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jshell-scripting:0.0.1.classpath"/>
+    <path refid="library.maven:_com.github.waikato:fcms-widgets:0.0.14.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jfilechooser-bookmarks:0.1.6.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:processoutput4j:0.0.7.classpath"/>
+    <path refid="library.maven:_com.fifesoft:rsyntaxtextarea:2.6.1.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.7.classpath"/>
+    <path refid="library.maven:_net.sf.meka:meka:1.9.2.classpath"/>
+    <path refid="library.maven:_com.jidesoft:jide-oss:3.6.18.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jclipboardhelper:0.1.1.classpath"/>
+    <path refid="library.maven:_gov.nist.math:jama:1.0.3.classpath"/>
+    <path refid="library.maven:_net.sf.trove4j:trove4j:3.0.3.classpath"/>
+    <path refid="library.maven:_org.kramerlab:bmad:2.4.classpath"/>
+    <path refid="library.maven:_org.kramerlab:autoencoder:0.1.classpath"/>
+    <path refid="library.maven:_org.scala-lang:scala-library:2.10.2.classpath"/>
+    <path refid="library.maven:_org.scala-lang:scala-swing:2.10.2.classpath"/>
+    <path refid="library.maven:_org.scalatest:scalatest-maven-plugin:1.0-m2.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-plugin-api:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-project:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-settings:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-profile:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-model:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-artifact-manager:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-repository-metadata:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven.wagon:wagon-provider-api:1.0-beta-2.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-plugin-registry:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-artifact:2.0.9.classpath"/>
+    <path refid="library.maven:_org.codehaus.plexus:plexus-container-default:1.0-alpha-9-stable-1.classpath"/>
+    <path refid="library.maven:_classworlds:classworlds:1.1-alpha-2.classpath"/>
+    <path refid="library.maven:_org.apache.maven.reporting:maven-reporting-api:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven.doxia:doxia-sink-api:1.0.classpath"/>
+    <path refid="library.maven:_org.codehaus.plexus:plexus-utils:3.0.classpath"/>
+    <path refid="library.maven:_com.googlecode.efficient-java-matrix-library:ejml:0.22.classpath"/>
+    <path refid="library.maven:_org.markdownj:markdownj-core:0.4.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:multisearch-weka-package:2017.10.1.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-math3:3.6.1.classpath"/>
+    <path refid="library.maven:_com.opencsv:opencsv:4.0.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-text:1.1.classpath"/>
+    <path refid="library.maven:_commons-beanutils:commons-beanutils:1.9.3.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.maven:_commons-collections:commons-collections:3.2.2.classpath"/>
+    <path refid="library.maven:_commons-cli:commons-cli:1.4.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.4.classpath"/>
+    <path refid="library.maven:_org.jfree:jfreechart:1.0.19.classpath"/>
+    <path refid="library.maven:_org.jfree:jcommon:1.0.23.classpath"/>
+  </path>
+  
+  <path id="moa.runtime.production.module.classpath">
+    <pathelement location="${moa.output.dir}"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka:weka-dev:3.9.2.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:java-cup-11b:2015.03.26.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:java-cup-11b-runtime:2015.03.26.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:bounce:0.18.classpath"/>
+    <path refid="library.maven:_com.googlecode.matrix-toolkits-java:mtj:1.0.4.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-osx-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:native_ref-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil:jniloader:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-win-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-win-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-armhf:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-osx-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:native_system-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-armhf:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-win-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-win-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_net.sourceforge.f2j:arpack_combined_all:0.1.classpath"/>
+    <path refid="library.maven:_com.googlecode.netlib-java:netlib-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:core:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:sizeofag:1.0.4.classpath"/>
+    <path refid="library.maven:_com.github.waikato:jclasslocator:0.0.12.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jshell-scripting:0.0.1.classpath"/>
+    <path refid="library.maven:_com.github.waikato:fcms-widgets:0.0.14.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jfilechooser-bookmarks:0.1.6.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:processoutput4j:0.0.7.classpath"/>
+    <path refid="library.maven:_com.fifesoft:rsyntaxtextarea:2.6.1.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.7.classpath"/>
+    <path refid="library.maven:_net.sf.meka:meka:1.9.2.classpath"/>
+    <path refid="library.maven:_com.jidesoft:jide-oss:3.6.18.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jclipboardhelper:0.1.1.classpath"/>
+    <path refid="library.maven:_gov.nist.math:jama:1.0.3.classpath"/>
+    <path refid="library.maven:_net.sf.trove4j:trove4j:3.0.3.classpath"/>
+    <path refid="library.maven:_org.kramerlab:bmad:2.4.classpath"/>
+    <path refid="library.maven:_org.kramerlab:autoencoder:0.1.classpath"/>
+    <path refid="library.maven:_org.scala-lang:scala-library:2.10.2.classpath"/>
+    <path refid="library.maven:_org.scala-lang:scala-swing:2.10.2.classpath"/>
+    <path refid="library.maven:_org.scalatest:scalatest-maven-plugin:1.0-m2.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-plugin-api:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-project:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-settings:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-profile:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-model:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-artifact-manager:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-repository-metadata:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven.wagon:wagon-provider-api:1.0-beta-2.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-plugin-registry:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-artifact:2.0.9.classpath"/>
+    <path refid="library.maven:_org.codehaus.plexus:plexus-container-default:1.0-alpha-9-stable-1.classpath"/>
+    <path refid="library.maven:_classworlds:classworlds:1.1-alpha-2.classpath"/>
+    <path refid="library.maven:_org.apache.maven.reporting:maven-reporting-api:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven.doxia:doxia-sink-api:1.0.classpath"/>
+    <path refid="library.maven:_org.codehaus.plexus:plexus-utils:3.0.classpath"/>
+    <path refid="library.maven:_com.googlecode.efficient-java-matrix-library:ejml:0.22.classpath"/>
+    <path refid="library.maven:_org.markdownj:markdownj-core:0.4.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:multisearch-weka-package:2017.10.1.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-math3:3.6.1.classpath"/>
+    <path refid="library.maven:_com.opencsv:opencsv:4.0.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-text:1.1.classpath"/>
+    <path refid="library.maven:_commons-beanutils:commons-beanutils:1.9.3.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.maven:_commons-collections:commons-collections:3.2.2.classpath"/>
+    <path refid="library.maven:_commons-cli:commons-cli:1.4.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.4.classpath"/>
+    <path refid="library.maven:_org.jfree:jfreechart:1.0.19.classpath"/>
+    <path refid="library.maven:_org.jfree:jcommon:1.0.23.classpath"/>
+  </path>
+  
+  <path id="moa.module.classpath">
+    <path refid="${module.jdk.classpath.moa}"/>
+    <pathelement location="${moa.output.dir}"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka:weka-dev:3.9.2.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:java-cup-11b:2015.03.26.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:java-cup-11b-runtime:2015.03.26.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:bounce:0.18.classpath"/>
+    <path refid="library.maven:_com.googlecode.matrix-toolkits-java:mtj:1.0.4.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-osx-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:native_ref-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil:jniloader:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-win-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-win-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-armhf:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-osx-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:native_system-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-armhf:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-win-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-win-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_net.sourceforge.f2j:arpack_combined_all:0.1.classpath"/>
+    <path refid="library.maven:_com.googlecode.netlib-java:netlib-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:core:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:sizeofag:1.0.4.classpath"/>
+    <path refid="library.maven:_com.github.waikato:jclasslocator:0.0.12.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jshell-scripting:0.0.1.classpath"/>
+    <path refid="library.maven:_com.github.waikato:fcms-widgets:0.0.14.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jfilechooser-bookmarks:0.1.6.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:processoutput4j:0.0.7.classpath"/>
+    <path refid="library.maven:_com.fifesoft:rsyntaxtextarea:2.6.1.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.7.classpath"/>
+    <path refid="library.maven:_net.sf.meka:meka:1.9.2.classpath"/>
+    <path refid="library.maven:_com.jidesoft:jide-oss:3.6.18.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jclipboardhelper:0.1.1.classpath"/>
+    <path refid="library.maven:_gov.nist.math:jama:1.0.3.classpath"/>
+    <path refid="library.maven:_net.sf.trove4j:trove4j:3.0.3.classpath"/>
+    <path refid="library.maven:_org.kramerlab:bmad:2.4.classpath"/>
+    <path refid="library.maven:_org.kramerlab:autoencoder:0.1.classpath"/>
+    <path refid="library.maven:_org.scala-lang:scala-library:2.10.2.classpath"/>
+    <path refid="library.maven:_org.scala-lang:scala-swing:2.10.2.classpath"/>
+    <path refid="library.maven:_org.scalatest:scalatest-maven-plugin:1.0-m2.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-plugin-api:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-project:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-settings:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-profile:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-model:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-artifact-manager:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-repository-metadata:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven.wagon:wagon-provider-api:1.0-beta-2.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-plugin-registry:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-artifact:2.0.9.classpath"/>
+    <path refid="library.maven:_org.codehaus.plexus:plexus-container-default:1.0-alpha-9-stable-1.classpath"/>
+    <path refid="library.maven:_classworlds:classworlds:1.1-alpha-2.classpath"/>
+    <path refid="library.maven:_org.apache.maven.reporting:maven-reporting-api:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven.doxia:doxia-sink-api:1.0.classpath"/>
+    <path refid="library.maven:_org.codehaus.plexus:plexus-utils:3.0.classpath"/>
+    <path refid="library.maven:_com.googlecode.efficient-java-matrix-library:ejml:0.22.classpath"/>
+    <path refid="library.maven:_org.markdownj:markdownj-core:0.4.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:multisearch-weka-package:2017.10.1.classpath"/>
+    <path refid="library.maven:_junit:junit:4.8.2.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-math3:3.6.1.classpath"/>
+    <path refid="library.maven:_com.googlecode.java-diff-utils:diffutils:1.2.1.classpath"/>
+    <path refid="library.maven:_com.opencsv:opencsv:4.0.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-text:1.1.classpath"/>
+    <path refid="library.maven:_commons-beanutils:commons-beanutils:1.9.3.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.maven:_commons-collections:commons-collections:3.2.2.classpath"/>
+    <path refid="library.maven:_commons-cli:commons-cli:1.4.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.4.classpath"/>
+    <path refid="library.maven:_org.jfree:jfreechart:1.0.19.classpath"/>
+    <path refid="library.maven:_org.jfree:jcommon:1.0.23.classpath"/>
+  </path>
+  
+  <path id="moa.runtime.module.classpath">
+    <pathelement location="${moa.testoutput.dir}"/>
+    <pathelement location="${moa.output.dir}"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka:weka-dev:3.9.2.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:java-cup-11b:2015.03.26.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:java-cup-11b-runtime:2015.03.26.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:bounce:0.18.classpath"/>
+    <path refid="library.maven:_com.googlecode.matrix-toolkits-java:mtj:1.0.4.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-osx-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:native_ref-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil:jniloader:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-win-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-win-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-armhf:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-osx-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:native_system-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-armhf:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-win-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-win-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_net.sourceforge.f2j:arpack_combined_all:0.1.classpath"/>
+    <path refid="library.maven:_com.googlecode.netlib-java:netlib-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:core:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:sizeofag:1.0.4.classpath"/>
+    <path refid="library.maven:_com.github.waikato:jclasslocator:0.0.12.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jshell-scripting:0.0.1.classpath"/>
+    <path refid="library.maven:_com.github.waikato:fcms-widgets:0.0.14.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jfilechooser-bookmarks:0.1.6.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:processoutput4j:0.0.7.classpath"/>
+    <path refid="library.maven:_com.fifesoft:rsyntaxtextarea:2.6.1.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.7.classpath"/>
+    <path refid="library.maven:_net.sf.meka:meka:1.9.2.classpath"/>
+    <path refid="library.maven:_com.jidesoft:jide-oss:3.6.18.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jclipboardhelper:0.1.1.classpath"/>
+    <path refid="library.maven:_gov.nist.math:jama:1.0.3.classpath"/>
+    <path refid="library.maven:_net.sf.trove4j:trove4j:3.0.3.classpath"/>
+    <path refid="library.maven:_org.kramerlab:bmad:2.4.classpath"/>
+    <path refid="library.maven:_org.kramerlab:autoencoder:0.1.classpath"/>
+    <path refid="library.maven:_org.scala-lang:scala-library:2.10.2.classpath"/>
+    <path refid="library.maven:_org.scala-lang:scala-swing:2.10.2.classpath"/>
+    <path refid="library.maven:_org.scalatest:scalatest-maven-plugin:1.0-m2.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-plugin-api:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-project:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-settings:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-profile:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-model:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-artifact-manager:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-repository-metadata:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven.wagon:wagon-provider-api:1.0-beta-2.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-plugin-registry:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-artifact:2.0.9.classpath"/>
+    <path refid="library.maven:_org.codehaus.plexus:plexus-container-default:1.0-alpha-9-stable-1.classpath"/>
+    <path refid="library.maven:_classworlds:classworlds:1.1-alpha-2.classpath"/>
+    <path refid="library.maven:_org.apache.maven.reporting:maven-reporting-api:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven.doxia:doxia-sink-api:1.0.classpath"/>
+    <path refid="library.maven:_org.codehaus.plexus:plexus-utils:3.0.classpath"/>
+    <path refid="library.maven:_com.googlecode.efficient-java-matrix-library:ejml:0.22.classpath"/>
+    <path refid="library.maven:_org.markdownj:markdownj-core:0.4.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:multisearch-weka-package:2017.10.1.classpath"/>
+    <path refid="library.maven:_junit:junit:4.8.2.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-math3:3.6.1.classpath"/>
+    <path refid="library.maven:_com.googlecode.java-diff-utils:diffutils:1.2.1.classpath"/>
+    <path refid="library.maven:_com.opencsv:opencsv:4.0.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-text:1.1.classpath"/>
+    <path refid="library.maven:_commons-beanutils:commons-beanutils:1.9.3.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.maven:_commons-collections:commons-collections:3.2.2.classpath"/>
+    <path refid="library.maven:_commons-cli:commons-cli:1.4.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.4.classpath"/>
+    <path refid="library.maven:_org.jfree:jfreechart:1.0.19.classpath"/>
+    <path refid="library.maven:_org.jfree:jcommon:1.0.23.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.moa">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.moa">
+    <patternset refid="excluded.from.module.moa"/>
+  </patternset>
+  
+  <path id="moa.module.sourcepath">
+    <dirset dir="${module.moa.basedir}/moa">
+      <include name="src/main/java"/>
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  <path id="moa.module.test.sourcepath">
+    <dirset dir="${module.moa.basedir}/moa">
+      <include name="src/test/java"/>
+      <include name="src/test/resources"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.moa" depends="compile.module.moa.production,compile.module.moa.tests" description="Compile module moa"/>
+  
+  <target name="compile.module.moa.production" depends="register.custom.compilers" description="Compile module moa; production classes">
+    <mkdir dir="${moa.output.dir}"/>
+    <javac2 destdir="${moa.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.moa}/javac">
+      <compilerarg line="${compiler.args.moa}"/>
+      <bootclasspath refid="moa.module.bootclasspath"/>
+      <classpath refid="moa.module.production.classpath"/>
+      <src refid="moa.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.moa"/>
+    </javac2>
+    
+    <copy todir="${moa.output.dir}">
+      <fileset dir="${module.moa.basedir}/moa/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.moa.basedir}/moa/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.moa.tests" depends="register.custom.compilers,compile.module.moa.production" description="compile module moa; test classes" unless="skip.tests">
+    <mkdir dir="${moa.testoutput.dir}"/>
+    <javac2 destdir="${moa.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.moa}/javac">
+      <compilerarg line="${compiler.args.moa}"/>
+      <bootclasspath refid="moa.module.bootclasspath"/>
+      <classpath refid="moa.module.classpath"/>
+      <src refid="moa.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.moa"/>
+    </javac2>
+    
+    <copy todir="${moa.testoutput.dir}">
+      <fileset dir="${module.moa.basedir}/moa/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.moa.basedir}/moa/src/test/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.moa" description="cleanup module">
+    <delete dir="${moa.output.dir}"/>
+    <delete dir="${moa.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module moa-pom -->
+  
+  <dirname property="module.moa-pom.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.moa-pom" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.moa-pom" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.moa-pom" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.moa-pom" value="-encoding UTF-8 -source 5 -target 1.5 ${compiler.args}"/>
+  
+  <property name="moa-pom.output.dir" value="${module.moa-pom.basedir}/target/classes"/>
+  <property name="moa-pom.testoutput.dir" value="${module.moa-pom.basedir}/target/test-classes"/>
+  
+  <path id="moa-pom.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="moa-pom.module.production.classpath">
+    <path refid="${module.jdk.classpath.moa-pom}"/>
+  </path>
+  
+  <path id="moa-pom.runtime.production.module.classpath">
+    <pathelement location="${moa-pom.output.dir}"/>
+  </path>
+  
+  <path id="moa-pom.module.classpath">
+    <path refid="${module.jdk.classpath.moa-pom}"/>
+    <pathelement location="${moa-pom.output.dir}"/>
+  </path>
+  
+  <path id="moa-pom.runtime.module.classpath">
+    <pathelement location="${moa-pom.testoutput.dir}"/>
+    <pathelement location="${moa-pom.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.moa-pom">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.moa-pom">
+    <patternset refid="excluded.from.module.moa-pom"/>
+  </patternset>
+  
+  
+  <target name="compile.module.moa-pom" depends="compile.module.moa-pom.production,compile.module.moa-pom.tests" description="Compile module moa-pom"/>
+  
+  <target name="compile.module.moa-pom.production" depends="register.custom.compilers" description="Compile module moa-pom; production classes"/>
+  
+  <target name="compile.module.moa-pom.tests" depends="register.custom.compilers,compile.module.moa-pom.production" description="compile module moa-pom; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.moa-pom" description="cleanup module">
+    <delete dir="${moa-pom.output.dir}"/>
+    <delete dir="${moa-pom.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module weka-package -->
+  
+  <dirname property="module.weka-package.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.weka-package" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.weka-package" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.weka-package" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.weka-package" value="-encoding UTF-8 -source 8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="weka-package.output.dir" value="${module.weka-package.basedir}/weka-package/target/classes"/>
+  <property name="weka-package.testoutput.dir" value="${module.weka-package.basedir}/weka-package/target/test-classes"/>
+  
+  <path id="weka-package.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="weka-package.module.production.classpath">
+    <path refid="${module.jdk.classpath.weka-package}"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.moa:moa:2019.05.0.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka:weka-dev:3.9.2.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:java-cup-11b:2015.03.26.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:java-cup-11b-runtime:2015.03.26.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:bounce:0.18.classpath"/>
+    <path refid="library.maven:_com.googlecode.matrix-toolkits-java:mtj:1.0.4.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-osx-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:native_ref-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil:jniloader:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-win-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-win-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-armhf:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-osx-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:native_system-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-armhf:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-win-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-win-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_net.sourceforge.f2j:arpack_combined_all:0.1.classpath"/>
+    <path refid="library.maven:_com.googlecode.netlib-java:netlib-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:core:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:sizeofag:1.0.4.classpath"/>
+    <path refid="library.maven:_com.github.waikato:jclasslocator:0.0.12.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jshell-scripting:0.0.1.classpath"/>
+    <path refid="library.maven:_com.github.waikato:fcms-widgets:0.0.14.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jfilechooser-bookmarks:0.1.6.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:processoutput4j:0.0.7.classpath"/>
+    <path refid="library.maven:_com.fifesoft:rsyntaxtextarea:2.6.1.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.7.classpath"/>
+    <path refid="library.maven:_net.sf.meka:meka:1.9.2.classpath"/>
+    <path refid="library.maven:_com.jidesoft:jide-oss:3.6.18.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jclipboardhelper:0.1.1.classpath"/>
+    <path refid="library.maven:_gov.nist.math:jama:1.0.3.classpath"/>
+    <path refid="library.maven:_net.sf.trove4j:trove4j:3.0.3.classpath"/>
+    <path refid="library.maven:_org.kramerlab:bmad:2.4.classpath"/>
+    <path refid="library.maven:_org.kramerlab:autoencoder:0.1.classpath"/>
+    <path refid="library.maven:_org.scala-lang:scala-library:2.10.2.classpath"/>
+    <path refid="library.maven:_org.scala-lang:scala-swing:2.10.2.classpath"/>
+    <path refid="library.maven:_org.scalatest:scalatest-maven-plugin:1.0-m2.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-plugin-api:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-project:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-settings:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-profile:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-model:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-artifact-manager:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-repository-metadata:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven.wagon:wagon-provider-api:1.0-beta-2.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-plugin-registry:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-artifact:2.0.9.classpath"/>
+    <path refid="library.maven:_org.codehaus.plexus:plexus-container-default:1.0-alpha-9-stable-1.classpath"/>
+    <path refid="library.maven:_classworlds:classworlds:1.1-alpha-2.classpath"/>
+    <path refid="library.maven:_org.apache.maven.reporting:maven-reporting-api:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven.doxia:doxia-sink-api:1.0.classpath"/>
+    <path refid="library.maven:_org.codehaus.plexus:plexus-utils:3.0.classpath"/>
+    <path refid="library.maven:_com.googlecode.efficient-java-matrix-library:ejml:0.22.classpath"/>
+    <path refid="library.maven:_org.markdownj:markdownj-core:0.4.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:multisearch-weka-package:2017.10.1.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-math3:3.6.1.classpath"/>
+    <path refid="library.maven:_com.opencsv:opencsv:4.0.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-text:1.1.classpath"/>
+    <path refid="library.maven:_commons-beanutils:commons-beanutils:1.9.3.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.maven:_commons-collections:commons-collections:3.2.2.classpath"/>
+    <path refid="library.maven:_commons-cli:commons-cli:1.4.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.4.classpath"/>
+    <path refid="library.maven:_org.jfree:jfreechart:1.0.19.classpath"/>
+    <path refid="library.maven:_org.jfree:jcommon:1.0.23.classpath"/>
+  </path>
+  
+  <path id="weka-package.runtime.production.module.classpath">
+    <pathelement location="${weka-package.output.dir}"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.moa:moa:2019.05.0.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka:weka-dev:3.9.2.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:java-cup-11b:2015.03.26.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:java-cup-11b-runtime:2015.03.26.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:bounce:0.18.classpath"/>
+    <path refid="library.maven:_com.googlecode.matrix-toolkits-java:mtj:1.0.4.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-osx-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:native_ref-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil:jniloader:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-win-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-win-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-armhf:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-osx-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:native_system-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-armhf:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-win-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-win-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_net.sourceforge.f2j:arpack_combined_all:0.1.classpath"/>
+    <path refid="library.maven:_com.googlecode.netlib-java:netlib-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:core:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:sizeofag:1.0.4.classpath"/>
+    <path refid="library.maven:_com.github.waikato:jclasslocator:0.0.12.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jshell-scripting:0.0.1.classpath"/>
+    <path refid="library.maven:_com.github.waikato:fcms-widgets:0.0.14.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jfilechooser-bookmarks:0.1.6.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:processoutput4j:0.0.7.classpath"/>
+    <path refid="library.maven:_com.fifesoft:rsyntaxtextarea:2.6.1.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.7.classpath"/>
+    <path refid="library.maven:_net.sf.meka:meka:1.9.2.classpath"/>
+    <path refid="library.maven:_com.jidesoft:jide-oss:3.6.18.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jclipboardhelper:0.1.1.classpath"/>
+    <path refid="library.maven:_gov.nist.math:jama:1.0.3.classpath"/>
+    <path refid="library.maven:_net.sf.trove4j:trove4j:3.0.3.classpath"/>
+    <path refid="library.maven:_org.kramerlab:bmad:2.4.classpath"/>
+    <path refid="library.maven:_org.kramerlab:autoencoder:0.1.classpath"/>
+    <path refid="library.maven:_org.scala-lang:scala-library:2.10.2.classpath"/>
+    <path refid="library.maven:_org.scala-lang:scala-swing:2.10.2.classpath"/>
+    <path refid="library.maven:_org.scalatest:scalatest-maven-plugin:1.0-m2.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-plugin-api:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-project:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-settings:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-profile:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-model:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-artifact-manager:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-repository-metadata:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven.wagon:wagon-provider-api:1.0-beta-2.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-plugin-registry:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-artifact:2.0.9.classpath"/>
+    <path refid="library.maven:_org.codehaus.plexus:plexus-container-default:1.0-alpha-9-stable-1.classpath"/>
+    <path refid="library.maven:_classworlds:classworlds:1.1-alpha-2.classpath"/>
+    <path refid="library.maven:_org.apache.maven.reporting:maven-reporting-api:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven.doxia:doxia-sink-api:1.0.classpath"/>
+    <path refid="library.maven:_org.codehaus.plexus:plexus-utils:3.0.classpath"/>
+    <path refid="library.maven:_com.googlecode.efficient-java-matrix-library:ejml:0.22.classpath"/>
+    <path refid="library.maven:_org.markdownj:markdownj-core:0.4.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:multisearch-weka-package:2017.10.1.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-math3:3.6.1.classpath"/>
+    <path refid="library.maven:_com.opencsv:opencsv:4.0.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-text:1.1.classpath"/>
+    <path refid="library.maven:_commons-beanutils:commons-beanutils:1.9.3.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.maven:_commons-collections:commons-collections:3.2.2.classpath"/>
+    <path refid="library.maven:_commons-cli:commons-cli:1.4.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.4.classpath"/>
+    <path refid="library.maven:_org.jfree:jfreechart:1.0.19.classpath"/>
+    <path refid="library.maven:_org.jfree:jcommon:1.0.23.classpath"/>
+  </path>
+  
+  <path id="weka-package.module.classpath">
+    <path refid="${module.jdk.classpath.weka-package}"/>
+    <pathelement location="${weka-package.output.dir}"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.moa:moa:2019.05.0.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka:weka-dev:3.9.2.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:java-cup-11b:2015.03.26.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:java-cup-11b-runtime:2015.03.26.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:bounce:0.18.classpath"/>
+    <path refid="library.maven:_com.googlecode.matrix-toolkits-java:mtj:1.0.4.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-osx-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:native_ref-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil:jniloader:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-win-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-win-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-armhf:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-osx-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:native_system-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-armhf:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-win-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-win-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_net.sourceforge.f2j:arpack_combined_all:0.1.classpath"/>
+    <path refid="library.maven:_com.googlecode.netlib-java:netlib-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:core:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:sizeofag:1.0.4.classpath"/>
+    <path refid="library.maven:_com.github.waikato:jclasslocator:0.0.12.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jshell-scripting:0.0.1.classpath"/>
+    <path refid="library.maven:_com.github.waikato:fcms-widgets:0.0.14.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jfilechooser-bookmarks:0.1.6.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:processoutput4j:0.0.7.classpath"/>
+    <path refid="library.maven:_com.fifesoft:rsyntaxtextarea:2.6.1.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.7.classpath"/>
+    <path refid="library.maven:_net.sf.meka:meka:1.9.2.classpath"/>
+    <path refid="library.maven:_com.jidesoft:jide-oss:3.6.18.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jclipboardhelper:0.1.1.classpath"/>
+    <path refid="library.maven:_gov.nist.math:jama:1.0.3.classpath"/>
+    <path refid="library.maven:_net.sf.trove4j:trove4j:3.0.3.classpath"/>
+    <path refid="library.maven:_org.kramerlab:bmad:2.4.classpath"/>
+    <path refid="library.maven:_org.kramerlab:autoencoder:0.1.classpath"/>
+    <path refid="library.maven:_org.scala-lang:scala-library:2.10.2.classpath"/>
+    <path refid="library.maven:_org.scala-lang:scala-swing:2.10.2.classpath"/>
+    <path refid="library.maven:_org.scalatest:scalatest-maven-plugin:1.0-m2.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-plugin-api:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-project:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-settings:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-profile:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-model:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-artifact-manager:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-repository-metadata:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven.wagon:wagon-provider-api:1.0-beta-2.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-plugin-registry:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-artifact:2.0.9.classpath"/>
+    <path refid="library.maven:_org.codehaus.plexus:plexus-container-default:1.0-alpha-9-stable-1.classpath"/>
+    <path refid="library.maven:_junit:junit:4.8.2.classpath"/>
+    <path refid="library.maven:_classworlds:classworlds:1.1-alpha-2.classpath"/>
+    <path refid="library.maven:_org.apache.maven.reporting:maven-reporting-api:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven.doxia:doxia-sink-api:1.0.classpath"/>
+    <path refid="library.maven:_org.codehaus.plexus:plexus-utils:3.0.classpath"/>
+    <path refid="library.maven:_com.googlecode.efficient-java-matrix-library:ejml:0.22.classpath"/>
+    <path refid="library.maven:_org.markdownj:markdownj-core:0.4.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:multisearch-weka-package:2017.10.1.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-math3:3.6.1.classpath"/>
+    <path refid="library.maven:_com.opencsv:opencsv:4.0.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-text:1.1.classpath"/>
+    <path refid="library.maven:_commons-beanutils:commons-beanutils:1.9.3.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.maven:_commons-collections:commons-collections:3.2.2.classpath"/>
+    <path refid="library.maven:_commons-cli:commons-cli:1.4.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.4.classpath"/>
+    <path refid="library.maven:_org.jfree:jfreechart:1.0.19.classpath"/>
+    <path refid="library.maven:_org.jfree:jcommon:1.0.23.classpath"/>
+  </path>
+  
+  <path id="weka-package.runtime.module.classpath">
+    <pathelement location="${weka-package.testoutput.dir}"/>
+    <pathelement location="${weka-package.output.dir}"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.moa:moa:2019.05.0.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka:weka-dev:3.9.2.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:java-cup-11b:2015.03.26.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:java-cup-11b-runtime:2015.03.26.classpath"/>
+    <path refid="library.maven:_nz.ac.waikato.cms.weka.thirdparty:bounce:0.18.classpath"/>
+    <path refid="library.maven:_com.googlecode.matrix-toolkits-java:mtj:1.0.4.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-osx-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:native_ref-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil:jniloader:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-win-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-win-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_ref-linux-armhf:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-osx-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:native_system-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-linux-armhf:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-win-x86_64:natives:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:netlib-native_system-win-i686:natives:1.1.classpath"/>
+    <path refid="library.maven:_net.sourceforge.f2j:arpack_combined_all:0.1.classpath"/>
+    <path refid="library.maven:_com.googlecode.netlib-java:netlib-java:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fommil.netlib:core:1.1.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:sizeofag:1.0.4.classpath"/>
+    <path refid="library.maven:_com.github.waikato:jclasslocator:0.0.12.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jshell-scripting:0.0.1.classpath"/>
+    <path refid="library.maven:_com.github.waikato:fcms-widgets:0.0.14.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jfilechooser-bookmarks:0.1.6.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:processoutput4j:0.0.7.classpath"/>
+    <path refid="library.maven:_com.fifesoft:rsyntaxtextarea:2.6.1.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.7.classpath"/>
+    <path refid="library.maven:_net.sf.meka:meka:1.9.2.classpath"/>
+    <path refid="library.maven:_com.jidesoft:jide-oss:3.6.18.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:jclipboardhelper:0.1.1.classpath"/>
+    <path refid="library.maven:_gov.nist.math:jama:1.0.3.classpath"/>
+    <path refid="library.maven:_net.sf.trove4j:trove4j:3.0.3.classpath"/>
+    <path refid="library.maven:_org.kramerlab:bmad:2.4.classpath"/>
+    <path refid="library.maven:_org.kramerlab:autoencoder:0.1.classpath"/>
+    <path refid="library.maven:_org.scala-lang:scala-library:2.10.2.classpath"/>
+    <path refid="library.maven:_org.scala-lang:scala-swing:2.10.2.classpath"/>
+    <path refid="library.maven:_org.scalatest:scalatest-maven-plugin:1.0-m2.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-plugin-api:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-project:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-settings:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-profile:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-model:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-artifact-manager:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-repository-metadata:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven.wagon:wagon-provider-api:1.0-beta-2.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-plugin-registry:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven:maven-artifact:2.0.9.classpath"/>
+    <path refid="library.maven:_org.codehaus.plexus:plexus-container-default:1.0-alpha-9-stable-1.classpath"/>
+    <path refid="library.maven:_junit:junit:4.8.2.classpath"/>
+    <path refid="library.maven:_classworlds:classworlds:1.1-alpha-2.classpath"/>
+    <path refid="library.maven:_org.apache.maven.reporting:maven-reporting-api:2.0.9.classpath"/>
+    <path refid="library.maven:_org.apache.maven.doxia:doxia-sink-api:1.0.classpath"/>
+    <path refid="library.maven:_org.codehaus.plexus:plexus-utils:3.0.classpath"/>
+    <path refid="library.maven:_com.googlecode.efficient-java-matrix-library:ejml:0.22.classpath"/>
+    <path refid="library.maven:_org.markdownj:markdownj-core:0.4.classpath"/>
+    <path refid="library.maven:_com.github.fracpete:multisearch-weka-package:2017.10.1.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-math3:3.6.1.classpath"/>
+    <path refid="library.maven:_com.opencsv:opencsv:4.0.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-text:1.1.classpath"/>
+    <path refid="library.maven:_commons-beanutils:commons-beanutils:1.9.3.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.maven:_commons-collections:commons-collections:3.2.2.classpath"/>
+    <path refid="library.maven:_commons-cli:commons-cli:1.4.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.4.classpath"/>
+    <path refid="library.maven:_org.jfree:jfreechart:1.0.19.classpath"/>
+    <path refid="library.maven:_org.jfree:jcommon:1.0.23.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.weka-package">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.weka-package">
+    <patternset refid="excluded.from.module.weka-package"/>
+  </patternset>
+  
+  
+  <target name="compile.module.weka-package" depends="compile.module.weka-package.production,compile.module.weka-package.tests" description="Compile module weka-package"/>
+  
+  <target name="compile.module.weka-package.production" depends="register.custom.compilers" description="Compile module weka-package; production classes"/>
+  
+  <target name="compile.module.weka-package.tests" depends="register.custom.compilers,compile.module.weka-package.production" description="compile module weka-package; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.weka-package" description="cleanup module">
+    <delete dir="${weka-package.output.dir}"/>
+    <delete dir="${weka-package.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.moa, clean.module.moa-pom, clean.module.weka-package" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.moa, compile.module.moa-pom, compile.module.weka-package" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>
